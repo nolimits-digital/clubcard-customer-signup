@@ -127,11 +127,11 @@ export default function SignIn({ data }) {
             />
           </div>
           <FormControlLabel
-            control={<Checkbox value={true} onChange={(e) => setData2({ ...data2, isAgree: true })} color="primary" />}
+            control={<Checkbox value={true} onChange={(e) => setData2({ ...data2, isAgree: true })} />}
             label="I agree to receive updates from clubcard services"
           />
           <FormControlLabel
-            control={<Checkbox value={true} onChange={(e) => setData2({ ...data2, isAgreePolicy: true })} color="primary" />}
+            control={<Checkbox value={true} onChange={(e) => setData2({ ...data2, isAgreePolicy: true })} />}
             label={
               <>
                 I have read and agree to the&nbsp;
