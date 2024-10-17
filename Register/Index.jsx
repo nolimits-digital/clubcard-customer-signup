@@ -65,9 +65,9 @@ const SignUp = () => {
             }} />}
             label={
               <>
-                I have read and agree to the
+                I have read and agree to the&nbsp;
                 <Link href="/" passHref>
-                  Terms of Use.
+                   Terms of Use.
                 </Link>
               </>
             }

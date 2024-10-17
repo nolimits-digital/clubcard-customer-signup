@@ -125,10 +125,13 @@ a {
   margin-top: 20px;
 
 }
+.signup-card .PrivateSwitchBase-input-12{
+  display: none;
+}
 /*-- signup form style end --*/
 
 /*-- merchant signup form style start --*/
-.merchant-signup-form{}
+/* .merchant-signup-form{}
 .merchant-signup-form label{
   position: relative;
   font-size: 14px;
@@ -156,7 +159,7 @@ a {
 }
 .merchant-signup-form .MuiOutlinedInput-notchedOutline{
   border: none;
-}
+} */
 
 /*-- merchant signup form style end --*/
 

@@ -46,108 +46,100 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({data}) {
+export default function SignIn({ data }) {
   const classes = useStyles();
 
   const [data2, setData2] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${baseUrl}/customer/customer/${data?.id}`,{
+    fetch(`${baseUrl}/customer/customer/${data?.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body:JSON.stringify({...data2, isConfirmedUser:true})
+      body: JSON.stringify({ ...data2, isConfirmedUser: true })
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-    })
-    .catch(err => console.log({err}))
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => console.log({ err }))
   }
 
   return (
-    <Container component="main" maxWidth="xs" mt={5}>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
+    <div className="signup-body">
+      <div className="signup-card">
+        <Link href="/" className='logo'>
+          <img src="../assets/images/logo/logo.png" alt="logo" />
+        </Link>
         <form onSubmit={handleSubmit} className={`merchant-signup-form ${classes.form}`} noValidate>
-        <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            value={data?.firstName}
-            id="firstName"
-            label="First Name"
-            name="firstName"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            value={data?.lastName}
-            id="lastName"
-            label="Last Name"
-            name="lastName"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            value={data?.phoneNumber}
-            id="phoneNumber"
-            label="Phone Number"
-            name="phoneNumber"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            value={data?.email}
-            label="Email Address"
-            name="email"
-         
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            onChange={(e) => setData2({...data2, password: e.target.value })}
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-       
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            onChange={(e) => setData2({...data2, confirmPassword: e.target.value })}
-            name="confirmPassword"
-            label="Confirm Password"
-            type="password"
-            id="confirmPassword"
-       
+          <div className="input-wrapper">
+            <label>First Name</label>
+            <input type="text"
+              value={data?.firstName}
+              name="firstName"
+              id="firstName"
+              required
+            />
+          </div>
+          <div className="input-wrapper">
+            <label>Last Name</label>
+            <input type="text"
+              value={data?.lastName}
+              name="lastName"
+              id="lastName"
+              required
+            />
+          </div>
+          <div className="input-wrapper">
+            <label>Phone Number</label>
+            <input type="text"
+              value={data?.phoneNumber}
+              name="phoneNumber"
+              id="phoneNumber"
+              required
+            />
+          </div>
+          <div className="input-wrapper">
+            <label>Email Address</label>
+            <input type="email"
+              value={data?.email}
+              name="email"
+              id="email"
+              required
+            />
+          </div>
+          <div className="input-wrapper">
+            <label>Password</label>
+            <input type="passsword"
+              onChange={(e) => setData2({ ...data2, password: e.target.value })}
+              name="password"
+              id="password"
+              required
+            />
+          </div>
+          <div className="input-wrapper">
+            <label>Confirm Password</label>
+            <input type="passsword"
+              onChange={(e) => setData2({ ...data2, confirmPassword: e.target.value })}
+              name="confirmPassword"
+              id="confirmPassword"
+              required
+            />
+          </div>
+          <FormControlLabel
+            control={<Checkbox value={true} onChange={(e) => setData2({ ...data2, isAgree: true })} color="primary" />}
+            label="I agree to receive updates from clubcard services"
           />
           <FormControlLabel
-            control={<Checkbox value={true}  onChange={(e) => setData2({...data2, isAgree: true })} color="primary" />}
-            label="Agree"
-          />
-           <FormControlLabel
-            control={<Checkbox value={true} onChange={(e) => setData2({...data2, isAgreePolicy: true })}  color="primary" />}
-            label="Agree"
+            control={<Checkbox value={true} onChange={(e) => setData2({ ...data2, isAgreePolicy: true })} color="primary" />}
+            label={
+              <>
+                I have read and agree to the&nbsp;
+                <Link href="/" passHref>
+                  Terms of Use.
+                </Link>
+              </>
+            }
           />
           <Button
 
@@ -156,16 +148,28 @@ export default function SignIn({data}) {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            className={`form-btn ${classes.submit}`}
           >
-            Sign In
+            Sign Up
           </Button>
-          
+
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+    </div>
+    // <Container component="main" maxWidth="xs" mt={5}>
+    //   <CssBaseline />
+    //   <div className={classes.paper}>
+    //     <Avatar className={classes.avatar}>
+    //       <LockOutlinedIcon />
+    //     </Avatar>
+    //     <Typography component="h1" variant="h5">
+    //       Sign in
+    //     </Typography>
+    //     <form></form>
+    //   </div>
+    //   {/* <Box mt={8}>
+    //     <Copyright />
+    //   </Box> */}
+    // </Container>
   );
 }
