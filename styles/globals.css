@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -39,4 +40,87 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.signup-body{
+  background: #F0EDE6;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  padding: 20px 0px;
+}
+.signup-card{
+  max-width: 480px;
+  width: 100%;
+  margin: auto;
+  background: #FFF;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 30px 20px;
+  box-shadow: rgba(145, 158, 171, 0.3) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
+
+}
+.signup-card .logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 220px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+.signup-card .logo img{
+  max-width: 100%;
+}
+.input-wrapper{
+  margin-bottom: 16px;
+}
+.input-wrapper label{
+  font-size: 14px;
+  color: #444444;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.input-wrapper input{
+  width: 100%;
+  height: 45px;
+  border-radius: 6px;
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.15);
+  outline: none !important;
+  font-size: 15px;
+  padding: 5px 20px;
+  font-weight: 500;
+  color: #111;
+}
+.input-wrapper input::placeholder{
+  color: #999999;
+}
+
+.signup-card .MuiCheckbox-colorSecondary.Mui-checked{
+  color: #0e7eff;
+}
+
+.signup-card .MuiTypography-body1{
+  color: #111111;
+}
+.signup-card .MuiTypography-body1 a{
+  color: #0e7eff;
+}
+
+.signup-card .form-btn{
+  height: 45px;
+  border: none;
+  outline: none;
+  background: #0e7eff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 5px 20px;
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 20px;
+
 }
