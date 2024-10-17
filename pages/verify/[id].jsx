@@ -1,10 +1,10 @@
 import ConfirmEmail from '@/Register/ConfirmEmail'
 import React from 'react'
 
-const VerifyPage = () => {
+const index = () => {
   return (
     <ConfirmEmail/>
   )
 }
 
-export default VerifyPage
+export default index
