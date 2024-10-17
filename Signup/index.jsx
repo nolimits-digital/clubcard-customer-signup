@@ -75,7 +75,7 @@ export default function SignIn({data}) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form onSubmit={handleSubmit} className={classes.form} noValidate>
+        <form onSubmit={handleSubmit} className={`merchant-signup-form ${classes.form}`} noValidate>
         <TextField
             variant="outlined"
             margin="normal"
