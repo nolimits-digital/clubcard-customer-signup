@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { baseUrl } from '@/baseUrl';
+import { useRouter } from 'next/router';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -48,21 +49,58 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn({ data }) {
   const classes = useStyles();
-
+  const router = useRouter()
   const [data2, setData2] = useState({});
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   fetch(`${baseUrl}/customer/create-merchent`, {
+  //     method: 'Post',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ ...data, ...data2, createdAt: Date.now()})
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data)
+  //     })
+  //     .catch(err => console.log({ err }))
+  // }
+
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    fetch(`${baseUrl}/customer/create-merchent`, {
-      method: 'Post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...data, ...data2, createdAt: Date.now()})
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      })
-      .catch(err => console.log({ err }))
+    try {
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: data2?.firstName ? data2?.firstName : data?.firstName,
+          lastName: data2?.lastName ? data2?.lastName : data?.lastName,
+          email: data2?.email ? data2?.email : data?.email,
+          phoneNumber: data2?.phoneNumber ? data2?.phoneNumber : data?.phoneNumber,
+          ...data2
+
+        })
+      }
+      const createCustomer = await fetch(`${baseUrl}/customer/create-customer`, options)
+      const customerCreateResponse = await createCustomer.json();
+      console.log({ customerCreateResponse })
+      if (customerCreateResponse?.message === 'Item added successfully') {
+        router.push('/check-email', {
+          query: {
+            email: data2?.email ? data2?.email : data?.email
+          }
+        })
+      }
+      else {
+        router.push('https://my.clubcard.gr')
+      }
+      debugger
+    }
+    catch (err) {
+      console.log(err.message)
+      debugger
+    }
   }
 
   console.log(data2)
@@ -73,11 +111,11 @@ export default function SignIn({ data }) {
         <Link href="/" className='logo'>
           <img src="../../assets/images/logo/logo.png" alt="logo" />
         </Link>
-        <form onSubmit={handleSubmit} className={`merchant-signup-form ${classes.form}`} noValidate>
+        <form onSubmit={handleFormSubmit} className={`merchant-signup-form ${classes.form}`} noValidate>
           <div className="input-wrapper">
             <label>First Name</label>
             <input type="text"
-              value={data?.firstName}
+              defaultValue={data?.firstName}
               name="firstName"
               id="firstName"
               required
@@ -86,7 +124,7 @@ export default function SignIn({ data }) {
           <div className="input-wrapper">
             <label>Last Name</label>
             <input type="text"
-              value={data?.lastName}
+              defaultValue={data?.lastName}
               name="lastName"
               id="lastName"
               required
@@ -95,7 +133,7 @@ export default function SignIn({ data }) {
           <div className="input-wrapper">
             <label>Phone Number</label>
             <input type="text"
-              value={data?.phoneNumber}
+              defaultValue={data?.phoneNumber}
               name="phoneNumber"
               id="phoneNumber"
               required
@@ -104,7 +142,7 @@ export default function SignIn({ data }) {
           <div className="input-wrapper">
             <label>Email Address</label>
             <input type="email"
-              value={data?.email}
+              defaultValue={data?.email}
               name="email"
               id="email"
               required
@@ -145,7 +183,7 @@ export default function SignIn({ data }) {
           />
           <Button
 
-            disabled={data2?.password === data2?.confirmPassword ? false : true}
+            disabled={(data2?.password === data2?.confirmPassword) && data2?.isAgree &&  data2?.isAgreePolicy ? false : true}
             type="submit"
             fullWidth
             variant="contained"
