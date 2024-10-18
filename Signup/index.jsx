@@ -69,7 +69,7 @@ export default function SignIn({ data }) {
     <div className="signup-body">
       <div className="signup-card">
         <Link href="/" className='logo'>
-          <img src="../assets/images/logo/logo.png" alt="logo" />
+          <img src="../../assets/images/logo/logo.png" alt="logo" />
         </Link>
         <form onSubmit={handleSubmit} className={`merchant-signup-form ${classes.form}`} noValidate>
           <div className="input-wrapper">

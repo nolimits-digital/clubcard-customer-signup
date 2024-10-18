@@ -5,7 +5,7 @@ import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
 import SignIn from "@/Signup";
 import { useEffect, useState } from "react";
-import {baseUrl} from '../../baseUrl'
+import {baseUrl} from '../../../baseUrl'
 
 
 export default function index() {
@@ -13,9 +13,9 @@ export default function index() {
   const [data, setData] = useState({});
   const {id} = router.query;
   useEffect(() => {
-    fetch(`${baseUrl}/customer/customer/${id}`)
+    fetch(`${baseUrl}/customer/invite/${id}`)
     .then((response) =>response.json())
-    .then(data => setData(data?.Item))
+    .then(data => {setData(data?.Item);console.log(data.Item)})
     .catch(err => console.log(err.message))
   },[id])
 
