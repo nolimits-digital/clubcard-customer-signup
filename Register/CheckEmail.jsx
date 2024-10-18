@@ -1,7 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 const CheckEmail = () => {
+  const router = useRouter();
+  const {email} = router.query
   return (
     <div className="check-email-body">
       <div className="check-email-card">
@@ -13,7 +16,7 @@ const CheckEmail = () => {
 
         <h2>Check Your Email</h2>
         <p className="check-email-message">
-          We have sent a confirmation email to <strong>your email address</strong>.
+          We have sent a confirmation email to <strong>your email address: {email}</strong>.
           Please check your inbox and click on the verification link to complete the signup process.
         </p>
 

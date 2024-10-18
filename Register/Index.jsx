@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import InputWrapper from './InputWrapper';
 import { Button, Checkbox, FormControlLabel } from '@material-ui/core';
 import { baseUrl } from '@/baseUrl'
+import { useRouter } from 'next/router';
 const SignUp = () => {
-
+  const router = useRouter()
   const [userData, setUserData] = useState({
   })
   const handelInputOnChange = (e) => {
@@ -24,6 +25,16 @@ const SignUp = () => {
       const createCustomer = await fetch(`${baseUrl}/customer/create-customer`, options)
       const customerCreateResponse = await createCustomer.json();
       console.log({customerCreateResponse})
+      if(customerCreateResponse?.message === 'Item added successfully'){
+        router.push('/check-email', {
+          query:{
+            email: userData?.email
+          }
+        })
+      }
+      else{
+        router.push('https://my.clubcard.gr')
+      }
       debugger
     }
     catch (err) {
