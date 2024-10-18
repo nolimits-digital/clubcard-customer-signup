@@ -13,9 +13,13 @@ export default function index() {
   const [data, setData] = useState({});
   const {id} = router.query;
   useEffect(() => {
-    fetch(`${baseUrl}/customer/invite/${id}`)
+    fetch(`${baseUrl}/customer/invite/1729275225860`)
     .then((response) =>response.json())
-    .then(data => {setData(data?.Item);console.log(data.Item)})
+    .then(data => {
+      setData(data?.user); 
+      console.log({data})
+      debugger
+    })
     .catch(err => console.log(err.message))
   },[id])
 

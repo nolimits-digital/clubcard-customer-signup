@@ -53,10 +53,10 @@ export default function SignIn({ data }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${baseUrl}/customer/customer/${data?.id}`, {
-      method: 'PUT',
+    fetch(`${baseUrl}/customer/create-merchent`, {
+      method: 'Post',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...data2, isConfirmedUser: true })
+      body: JSON.stringify({ ...data, ...data2, createdAt: Date.now()})
     })
       .then(res => res.json())
       .then(data => {
@@ -64,6 +64,8 @@ export default function SignIn({ data }) {
       })
       .catch(err => console.log({ err }))
   }
+
+  console.log(data2)
 
   return (
     <div className="signup-body">
