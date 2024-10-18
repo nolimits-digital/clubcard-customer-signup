@@ -112,7 +112,7 @@ export default function SignIn({ data }) {
           </div>
           <div className="input-wrapper">
             <label>Password</label>
-            <input type="passsword"
+            <input type="password"
               onChange={(e) => setData2({ ...data2, password: e.target.value })}
               name="password"
               id="password"
@@ -121,7 +121,7 @@ export default function SignIn({ data }) {
           </div>
           <div className="input-wrapper">
             <label>Confirm Password</label>
-            <input type="passsword"
+            <input type="password"
               onChange={(e) => setData2({ ...data2, confirmPassword: e.target.value })}
               name="confirmPassword"
               id="confirmPassword"
