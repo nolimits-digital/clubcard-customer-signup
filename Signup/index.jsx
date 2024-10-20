@@ -103,13 +103,13 @@ export default function SignIn({ data }) {
     }
   }
 
-  console.log(data2)
+  console.log({data})
 
   return (
     <div className="signup-body">
       <div className="signup-card">
         <Link href="/" className='logo'>
-          <img src="../../assets/images/logo/logo.png" alt="logo" />
+          <img src={data?.logo ? data?.logo : "../../assets/images/logo/logo.png"} alt="logo" />
         </Link>
         <form onSubmit={handleFormSubmit} className={`merchant-signup-form ${classes.form}`} noValidate>
           <div className="input-wrapper">

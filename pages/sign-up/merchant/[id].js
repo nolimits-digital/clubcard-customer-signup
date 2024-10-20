@@ -16,9 +16,23 @@ export default function index() {
     fetch(`${baseUrl}/customer/invite/${id}`)
     .then((response) =>response.json())
     .then(data => {
-      setData(data?.user); 
-      console.log({data})
-      debugger
+      if(data?.user?.merchantId){
+        fetch(`${baseUrl}/marchent/merchent/${data?.user?.merchantId}`)
+        .then((response) => response.json())
+        .then(data2 => {
+          console.log({data2})
+          setData({...data?.user, logo: data2?.Item?.logo }); 
+          console.log({data})
+          debugger
+        })
+        .catch(error => console.error(error))
+        
+      }else{
+        setData(data?.user); 
+        console.log({data})
+        debugger
+      }
+     
     })
     .catch(err => console.log(err.message))
   },[id])
