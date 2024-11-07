@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({ data }) {
+export default function SignIn({ data, myHeaders }) {
   const classes = useStyles();
   const router = useRouter()
   const [data2, setData2] = useState({});
@@ -72,7 +72,7 @@ export default function SignIn({ data }) {
     try {
       const options = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...myHeaders,  'Content-Type': 'application/json', },
         body: JSON.stringify({
           firstName: data2?.firstName ? data2?.firstName : data?.firstName,
           lastName: data2?.lastName ? data2?.lastName : data?.lastName,
